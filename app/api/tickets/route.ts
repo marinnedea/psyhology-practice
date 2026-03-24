@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db";
 import { z } from "zod";
 import { sendEmail, ticketCreatedEmail } from "@/lib/email";
 import { getSettings } from "@/lib/settings";
+import { ticketLimiter, getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 
 const CreateSchema = z.object({
   subject: z.string().min(3).max(200),
@@ -30,6 +31,9 @@ export async function GET() {
 
 // POST /api/tickets — create ticket + first message
 export async function POST(req: NextRequest) {
+  const rl = ticketLimiter.check(getClientIp(req));
+  if (!rl.success) return rateLimitResponse(rl.resetAt);
+
   const user = await getCurrentUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
