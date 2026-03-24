@@ -181,7 +181,7 @@ export default function ContactPage({ contactEmail }: { contactEmail: string }) 
                     <div className="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
                       <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                     </div>
-                    <div><p className="font-medium text-gray-800">Email</p><a href={`mailto:${contactEmail}`} className="hover:text-indigo-600">{contactEmail}</a></div>
+                    <div><p className="font-medium text-gray-800">Email</p>{contactEmail ? <a href={`mailto:${contactEmail}`} className="hover:text-indigo-600">{contactEmail}</a> : <span className="text-gray-400 italic">Not configured</span>}</div>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
@@ -310,7 +310,7 @@ export default function ContactPage({ contactEmail }: { contactEmail: string }) 
               <div className="bg-gray-50 rounded-xl border border-gray-200 p-5 text-sm">
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-1">Response time</p>
                 <p className="text-gray-800 font-medium">Within 2 business days</p>
-                <p className="text-gray-400 text-xs mt-1">Urgent? Email <a href={`mailto:${contactEmail}`} className="text-indigo-600 hover:underline">{contactEmail}</a></p>
+                {contactEmail && <p className="text-gray-400 text-xs mt-1">Urgent? Email <a href={`mailto:${contactEmail}`} className="text-indigo-600 hover:underline">{contactEmail}</a></p>}
               </div>
             </div>
           </div>

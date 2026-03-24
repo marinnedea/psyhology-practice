@@ -8,7 +8,8 @@ export const metadata = {
 
 export default async function ContactPage() {
   const settings = await getSettings();
-  const contactEmail = settings.contact_email || "hello@mindbridge.com";
+  // Fallback is intentionally empty — configure via Admin → Settings → contact_email
+  const contactEmail = settings.contact_email || "";
 
   return <ContactPageClient contactEmail={contactEmail} />;
 }
