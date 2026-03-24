@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
   try {
     const settings = await getSettings();
     if (settings.ticketing_enabled === "1" && settings.smtp_enabled === "1") {
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+      const siteUrl = process.env.NEXTAUTH_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? "";
       const template = ticketCreatedEmail({
         ticketId: ticket.id,
         subject: ticket.subject,

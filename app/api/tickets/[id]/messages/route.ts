@@ -67,7 +67,7 @@ export async function POST(
     try {
       const settings = await getSettings();
       if (settings.ticketing_enabled === "1" && settings.smtp_enabled === "1") {
-        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+        const siteUrl = process.env.NEXTAUTH_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? "";
         const ownerRole = ticket.user.role as "CLIENT" | "PSYCHOLOGIST";
         const template = ticketReplyEmail({
           ticketId: ticket.id,
