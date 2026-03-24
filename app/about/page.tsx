@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db";
 import Link from "next/link";
+import { sanitizeText, sanitizeHtml } from "@/lib/sanitize";
 
 export const metadata = {
   title: "About Us | MindBridge",
@@ -145,7 +146,7 @@ export default async function AboutPage() {
             </h1>
             <div
               className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed prose prose-gray prose-lg mx-auto"
-              dangerouslySetInnerHTML={{ __html: hero.subtitle }}
+              dangerouslySetInnerHTML={{ __html: sanitizeText(hero.subtitle) }}
             />
           </div>
         </section>
@@ -162,7 +163,7 @@ export default async function AboutPage() {
               </h2>
               <div
                 className="text-lg text-gray-600 leading-relaxed prose prose-gray prose-lg max-w-none"
-                dangerouslySetInnerHTML={{ __html: story.content }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(story.content) }}
               />
             </div>
             <div className="rounded-2xl overflow-hidden shadow-lg h-72 md:h-80">
@@ -202,7 +203,7 @@ export default async function AboutPage() {
               </h2>
               <div
                 className="text-gray-600 leading-relaxed prose prose-gray max-w-none"
-                dangerouslySetInnerHTML={{ __html: mission.content }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(mission.content) }}
               />
             </div>
           </div>
@@ -285,7 +286,7 @@ export default async function AboutPage() {
             {cta.subtitle && (
               <div
                 className="text-indigo-100 mb-8 text-lg prose prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: cta.subtitle }}
+                dangerouslySetInnerHTML={{ __html: sanitizeText(cta.subtitle) }}
               />
             )}
             <div className="flex gap-4 justify-center flex-wrap">
