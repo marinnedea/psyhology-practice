@@ -135,25 +135,6 @@ const DEFAULT_WHY_US = {
   ],
 };
 
-const DEFAULT_FOR_COMPANIES = {
-  title: "Investing in Your People's Mental Health",
-  subtitle: "Organisations that prioritise psychological wellbeing see measurable improvements in retention, productivity, and culture. We offer a suite of tailored services designed for teams of all sizes.",
-  ctaText: "Request a Proposal",
-  ctaHref: "/contact",
-  items: [
-    { iconName: "chart",     title: "Workplace Psychological Assessment",  description: "Structured evaluations of individual and team wellbeing, identifying risk factors, burnout indicators, and opportunities for organisational growth." },
-    { iconName: "heart",     title: "Employee Psychotherapy",              description: "Confidential one-on-one therapy sessions for staff, available as part of an Employee Assistance Programme (EAP) or direct referral scheme." },
-    { iconName: "users",     title: "Resilience & Wellbeing Workshops",    description: "Interactive group sessions covering stress management, emotional regulation, communication skills, and burnout prevention — led by our clinical team." },
-    { iconName: "lightbulb", title: "Team Building with Specialists",      description: "Purposeful team experiences built around psychological safety, trust, and healthy communication — facilitated by our psychologists, not event coordinators." },
-    { iconName: "star",      title: "Leadership & Executive Coaching",     description: "Individual coaching for managers and senior leaders on emotional intelligence, decision-making under pressure, and sustainable high performance." },
-    { iconName: "lifebuoy",  title: "Crisis & Critical Incident Support",  description: "Rapid-response psychological support for teams following traumatic events, major organisational change, or acute workplace stress situations." },
-  ],
-  trustHighlights: [
-    { label: "Tailored programmes",     description: "No off-the-shelf packages — every engagement is scoped to your organisation's specific context and goals." },
-    { label: "Qualified clinical team", description: "All facilitators and coaches are chartered psychologists or accredited therapists with workplace experience." },
-    { label: "Measurable outcomes",     description: "Pre and post assessments, anonymised reporting, and actionable recommendations delivered after every programme." },
-  ],
-};
 
 const DEFAULT_CTA = {
   badge: "Take the First Step",
@@ -227,24 +208,6 @@ export default async function ServicesPage() {
     subtitle: whySec?.subtitle ?? DEFAULT_WHY_US.subtitle,
     items:   whyMeta.items   ?? DEFAULT_WHY_US.items,
     visible: whySec?.isVisible ?? true,
-  };
-
-  // ── For Companies ─────────────────────────────────────────────────────────────
-  const corpSec = sec("for_companies");
-  const corpMeta = (corpSec?.metadata ?? {}) as {
-    items?: { iconName: string; title: string; description: string }[];
-    trustHighlights?: { label: string; description: string }[];
-    ctaText?: string;
-    ctaHref?: string;
-  };
-  const corp = {
-    title:           corpSec?.title           ?? DEFAULT_FOR_COMPANIES.title,
-    subtitle:        corpSec?.subtitle        ?? DEFAULT_FOR_COMPANIES.subtitle,
-    items:           corpMeta.items           ?? DEFAULT_FOR_COMPANIES.items,
-    trustHighlights: corpMeta.trustHighlights ?? DEFAULT_FOR_COMPANIES.trustHighlights,
-    ctaText:         corpMeta.ctaText         ?? DEFAULT_FOR_COMPANIES.ctaText,
-    ctaHref:         corpMeta.ctaHref         ?? DEFAULT_FOR_COMPANIES.ctaHref,
-    visible:         corpSec?.isVisible       ?? true,
   };
 
   // ── CTA ───────────────────────────────────────────────────────────────────────
@@ -439,78 +402,80 @@ export default async function ServicesPage() {
         </section>
       )}
 
-      {/* ── 6. For Companies ────────────────────────────────────────────── */}
-      {corp.visible && (
-        <section className="py-24 px-4 bg-slate-900 relative overflow-hidden">
-          {/* Subtle grid texture */}
-          <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" aria-hidden="true">
-            <defs>
-              <pattern id="corp-grid" width="48" height="48" patternUnits="userSpaceOnUse">
-                <path d="M48 0H0v48" fill="none" stroke="white" strokeWidth="1" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#corp-grid)" />
-          </svg>
+      {/* ── 6. For Organisations teaser ─────────────────────────────────── */}
+      <section className="py-20 px-4 bg-slate-900 relative overflow-hidden">
+        {/* Subtle grid texture */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" aria-hidden="true">
+          <defs>
+            <pattern id="corp-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+              <path d="M48 0H0v48" fill="none" stroke="white" strokeWidth="1" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#corp-grid)" />
+        </svg>
 
-          <div className="relative max-w-5xl mx-auto">
-            {/* Section header */}
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-indigo-500/20 text-indigo-300 text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
-                  <IconBuilding />
-                  For Organisations
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 max-w-xl leading-snug">
-                  {corp.title}
-                </h2>
-                {corp.subtitle && (
-                  <p className="text-slate-400 max-w-lg leading-relaxed">{corp.subtitle}</p>
-                )}
+        <div className="relative max-w-5xl mx-auto">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-12">
+
+            {/* Left — copy */}
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 bg-indigo-500/20 text-indigo-300 text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
+                <IconBuilding />
+                For Organisations
               </div>
-              {corp.ctaText && (
-                <div className="shrink-0">
-                  <Link href={corp.ctaHref || "#"} className="inline-flex items-center gap-2 px-7 py-3.5 bg-white/15 text-white font-semibold rounded-xl hover:bg-white/25 transition-colors whitespace-nowrap shadow-lg">
-                    {corp.ctaText}
-                    <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                </div>
-              )}
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-snug">
+                Investing in Your People&apos;s Mental Health
+              </h2>
+              <p className="text-slate-400 leading-relaxed mb-8 max-w-lg">
+                Tailored psychological programmes for teams of all sizes — from workplace assessments
+                and employee wellbeing to leadership coaching and crisis response.
+              </p>
+
+              {/* Highlights */}
+              <ul className="space-y-3 mb-10">
+                {[
+                  "Workplace wellbeing assessments & EAP",
+                  "Resilience workshops & leadership coaching",
+                  "Crisis & critical incident support",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-slate-300 text-sm">
+                    <span className="w-5 h-5 rounded-full bg-indigo-500 flex items-center justify-center shrink-0">
+                      <IconCheck />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href="/services/organisations"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-500 transition-colors shadow-lg"
+              >
+                Explore Organisation Services
+                <svg aria-hidden="true" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
 
-            {/* Service cards */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
-              {corp.items.map((s) => (
-                <div key={s.title} className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:bg-white/10 transition-colors group">
-                  <div className="w-11 h-11 rounded-xl bg-indigo-500/20 text-indigo-300 flex items-center justify-center mb-5 group-hover:bg-indigo-500/30 transition-colors">
-                    {getIcon(s.iconName)}
-                  </div>
-                  <h3 className="font-bold text-white mb-3">{s.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">{s.description}</p>
+            {/* Right — stat cards */}
+            <div className="grid grid-cols-2 gap-4 lg:w-72 shrink-0">
+              {[
+                { value: "6+", label: "Organisation services" },
+                { value: "100%", label: "Tailored programmes" },
+                { value: "EAP", label: "Employee assistance" },
+                { value: "24h", label: "Crisis response" },
+              ].map(({ value, label }) => (
+                <div key={label} className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center">
+                  <p className="text-2xl font-bold text-white mb-1">{value}</p>
+                  <p className="text-slate-400 text-xs leading-snug">{label}</p>
                 </div>
               ))}
             </div>
 
-            {/* Trust highlights */}
-            {corp.trustHighlights.length > 0 && (
-              <div className="pt-10 border-t border-white/10 grid sm:grid-cols-3 gap-6">
-                {corp.trustHighlights.map((h) => (
-                  <div key={h.label} className="flex gap-3">
-                    <div className="w-6 h-6 rounded-full bg-indigo-500 flex items-center justify-center text-white shrink-0 mt-0.5">
-                      <IconCheck />
-                    </div>
-                    <div>
-                      <p className="text-white font-semibold text-sm mb-1">{h.label}</p>
-                      <p className="text-slate-400 text-sm leading-relaxed">{h.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* ── 7. First Step CTA ────────────────────────────────────────────── */}
       {cta.visible && (
