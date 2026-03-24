@@ -1,0 +1,1 @@
+-- Initial migration placeholder (applied directly on server)

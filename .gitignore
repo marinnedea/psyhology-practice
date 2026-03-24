@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/app/generated/prisma
+
+# Claude Code project settings
+.claude/
+
+# Seed images (downloaded from Unsplash during db:seed)
+public/uploads/seed/
+
+# Local uploads (user-submitted content — not tracked in git)
+public/uploads/*.jpg
+public/uploads/*.jpeg
+public/uploads/*.png
+public/uploads/*.webp
+public/uploads/*.gif

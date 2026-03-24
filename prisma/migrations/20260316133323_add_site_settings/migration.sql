@@ -1,0 +1,1 @@
+-- Add site settings migration placeholder (applied directly on server)
