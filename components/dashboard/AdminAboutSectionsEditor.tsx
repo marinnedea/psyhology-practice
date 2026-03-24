@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useSiteSettings } from "@/app/providers";
+import ImageUpload from "@/components/ui/ImageUpload";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -151,7 +152,7 @@ function getDefaultMeta(key: string): Record<string, unknown> {
       };
     case "our_story":
     case "our_mission":
-      return { imageUrl: "" };
+      return { imageUrl: "", imageId: "" };
     default:
       return {};
   }
@@ -384,7 +385,7 @@ function HeroEditor({ form, setForm, tinymceKey }: EditorProps) {
 // ── StoryEditor ───────────────────────────────────────────────────────────────
 
 function StoryEditor({ form, setForm, tinymceKey }: EditorProps) {
-  const meta = form.meta as { imageUrl?: string };
+  const meta = form.meta as { imageUrl?: string; imageId?: string };
   return (
     <div className="space-y-4">
       <div>
@@ -399,10 +400,13 @@ function StoryEditor({ form, setForm, tinymceKey }: EditorProps) {
           <textarea className={`${inputClass} resize-none`} rows={5} value={form.content} onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))} placeholder="Tell the story of how this practice began…" />
         )}
       </div>
-      <div>
-        <FieldLabel>Image URL <span className="font-normal text-gray-400">(optional)</span></FieldLabel>
-        <input className={inputClass} value={meta.imageUrl ?? ""} onChange={(e) => setForm((f) => ({ ...f, meta: { ...f.meta, imageUrl: e.target.value } }))} placeholder="https://…" />
-      </div>
+      <ImageUpload
+        label="Section Image (optional)"
+        value={meta.imageUrl || undefined}
+        imageId={meta.imageId || undefined}
+        onChange={(url, imageId) => setForm((f) => ({ ...f, meta: { ...f.meta, imageUrl: url, imageId } }))}
+        onClear={() => setForm((f) => ({ ...f, meta: { ...f.meta, imageUrl: "", imageId: "" } }))}
+      />
     </div>
   );
 }
@@ -410,7 +414,7 @@ function StoryEditor({ form, setForm, tinymceKey }: EditorProps) {
 // ── MissionEditor ─────────────────────────────────────────────────────────────
 
 function MissionEditor({ form, setForm, tinymceKey }: EditorProps) {
-  const meta = form.meta as { imageUrl?: string };
+  const meta = form.meta as { imageUrl?: string; imageId?: string };
   return (
     <div className="space-y-4">
       <div>
@@ -425,10 +429,13 @@ function MissionEditor({ form, setForm, tinymceKey }: EditorProps) {
           <textarea className={`${inputClass} resize-none`} rows={5} value={form.content} onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))} placeholder="Describe the mission…" />
         )}
       </div>
-      <div>
-        <FieldLabel>Image URL <span className="font-normal text-gray-400">(optional)</span></FieldLabel>
-        <input className={inputClass} value={meta.imageUrl ?? ""} onChange={(e) => setForm((f) => ({ ...f, meta: { ...f.meta, imageUrl: e.target.value } }))} placeholder="https://…" />
-      </div>
+      <ImageUpload
+        label="Section Image (optional)"
+        value={meta.imageUrl || undefined}
+        imageId={meta.imageId || undefined}
+        onChange={(url, imageId) => setForm((f) => ({ ...f, meta: { ...f.meta, imageUrl: url, imageId } }))}
+        onClear={() => setForm((f) => ({ ...f, meta: { ...f.meta, imageUrl: "", imageId: "" } }))}
+      />
     </div>
   );
 }
