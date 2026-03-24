@@ -17,9 +17,24 @@ const geist = Geist({
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
   const siteName = settings.site_name || "Psychology Practice";
+
+  const icons: Metadata["icons"] = {};
+  if (settings.favicon_url) {
+    icons.icon = [
+      { url: settings.favicon_url, type: "image/png", sizes: "32x32" },
+      ...(settings.favicon_2x_url
+        ? [{ url: settings.favicon_2x_url, type: "image/png", sizes: "64x64" }]
+        : []),
+    ];
+  }
+  if (settings.apple_touch_icon_url) {
+    icons.apple = [{ url: settings.apple_touch_icon_url, sizes: "180x180", type: "image/png" }];
+  }
+
   return {
     title: { template: `%s | ${siteName}`, default: siteName },
     description: settings.site_description,
+    ...(Object.keys(icons).length ? { icons } : {}),
   };
 }
 

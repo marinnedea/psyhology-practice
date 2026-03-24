@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { SiteSettings } from "@/lib/settings-types";
+import ImageUpload from "@/components/ui/ImageUpload";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -165,12 +166,22 @@ function BrandingTab({ values, setValues }: { values: SiteSettings; setValues: (
     setStatus("saving");
     try {
       await saveSettings({
-        site_name:       values.site_name,
-        site_tagline:    values.site_tagline,
-        site_description:values.site_description,
-        footer_credits:  values.footer_credits,
-        contact_email:   values.contact_email,
-        contact_phone:   values.contact_phone,
+        site_name:              values.site_name,
+        site_tagline:           values.site_tagline,
+        site_description:       values.site_description,
+        footer_credits:         values.footer_credits,
+        contact_email:          values.contact_email,
+        contact_phone:          values.contact_phone,
+        logo_url:               values.logo_url,
+        logo_image_id:          values.logo_image_id,
+        logo_2x_url:            values.logo_2x_url,
+        logo_2x_image_id:       values.logo_2x_image_id,
+        favicon_url:            values.favicon_url,
+        favicon_image_id:       values.favicon_image_id,
+        favicon_2x_url:         values.favicon_2x_url,
+        favicon_2x_image_id:    values.favicon_2x_image_id,
+        apple_touch_icon_url:        values.apple_touch_icon_url,
+        apple_touch_icon_image_id:   values.apple_touch_icon_image_id,
       });
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2500);
@@ -184,6 +195,14 @@ function BrandingTab({ values, setValues }: { values: SiteSettings; setValues: (
     return (v: string) => setValues({ ...values, [k]: v });
   }
 
+  function setImageField(urlKey: keyof SiteSettings, idKey: keyof SiteSettings) {
+    return (url: string, imageId: string) => setValues({ ...values, [urlKey]: url, [idKey]: imageId });
+  }
+
+  function clearImageField(urlKey: keyof SiteSettings, idKey: keyof SiteSettings) {
+    return () => setValues({ ...values, [urlKey]: "", [idKey]: "" });
+  }
+
   return (
     <div className="space-y-5 max-w-2xl">
       <Card title="Site Identity">
@@ -192,6 +211,69 @@ function BrandingTab({ values, setValues }: { values: SiteSettings; setValues: (
         <Field label="Meta Description" value={values.site_description} onChange={set("site_description")} placeholder="Used in search engine results" />
         <Field label="Footer Credits"   value={values.footer_credits}   onChange={set("footer_credits")}   placeholder="© 2025 Psychology Practice" />
       </Card>
+
+      <Card title="Logo & Favicon">
+        <p className="text-xs text-gray-500 -mt-1">
+          Upload SVG or PNG. For retina displays upload a 2× version at double the pixel dimensions.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-1">
+          <div className="space-y-4">
+            <ImageUpload
+              label="Logo — 1× (standard)"
+              value={values.logo_url || undefined}
+              imageId={values.logo_image_id || undefined}
+              onChange={setImageField("logo_url", "logo_image_id")}
+              onClear={clearImageField("logo_url", "logo_image_id")}
+            />
+            <ImageUpload
+              label="Logo — 2× (retina)"
+              value={values.logo_2x_url || undefined}
+              imageId={values.logo_2x_image_id || undefined}
+              onChange={setImageField("logo_2x_url", "logo_2x_image_id")}
+              onClear={clearImageField("logo_2x_url", "logo_2x_image_id")}
+            />
+          </div>
+          <div className="space-y-4">
+            <ImageUpload
+              label="Favicon — 1× (32×32 PNG)"
+              value={values.favicon_url || undefined}
+              imageId={values.favicon_image_id || undefined}
+              onChange={setImageField("favicon_url", "favicon_image_id")}
+              onClear={clearImageField("favicon_url", "favicon_image_id")}
+            />
+            <ImageUpload
+              label="Favicon — 2× (64×64 PNG)"
+              value={values.favicon_2x_url || undefined}
+              imageId={values.favicon_2x_image_id || undefined}
+              onChange={setImageField("favicon_2x_url", "favicon_2x_image_id")}
+              onClear={clearImageField("favicon_2x_url", "favicon_2x_image_id")}
+            />
+            <ImageUpload
+              label="Apple Touch Icon (180×180 PNG)"
+              value={values.apple_touch_icon_url || undefined}
+              imageId={values.apple_touch_icon_image_id || undefined}
+              onChange={setImageField("apple_touch_icon_url", "apple_touch_icon_image_id")}
+              onClear={clearImageField("apple_touch_icon_url", "apple_touch_icon_image_id")}
+            />
+          </div>
+        </div>
+
+        {values.logo_url && (
+          <div className="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+            <p className="text-xs text-gray-500 mb-2 font-medium">Header preview</p>
+            <div className="flex items-center gap-2">
+              <img
+                src={values.logo_url}
+                srcSet={values.logo_2x_url ? `${values.logo_url} 1x, ${values.logo_2x_url} 2x` : undefined}
+                alt={values.site_name}
+                className="h-8 w-auto object-contain"
+              />
+            </div>
+          </div>
+        )}
+      </Card>
+
       <Card title="Contact Details">
         <Field label="Contact Email" type="email" value={values.contact_email} onChange={set("contact_email")} placeholder="contact@example.com" />
         <Field label="Contact Phone" type="tel"   value={values.contact_phone} onChange={set("contact_phone")} placeholder="+1 (555) 000-0000" />
