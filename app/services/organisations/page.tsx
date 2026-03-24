@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db";
 import Link from "next/link";
+import { sanitizeText, sanitizeHtml } from "@/lib/sanitize";
 
 export const metadata = {
   title: "Services for Organisations | MindBridge",
@@ -252,7 +253,7 @@ export default async function OrganisationsPage() {
             {hero.subtitle && (
               <div
                 className="text-lg text-slate-300 max-w-2xl leading-relaxed mb-8 prose prose-invert prose-lg"
-                dangerouslySetInnerHTML={{ __html: hero.subtitle }}
+                dangerouslySetInnerHTML={{ __html: sanitizeText(hero.subtitle) }}
               />
             )}
             <div className="flex flex-wrap gap-3">
@@ -289,7 +290,7 @@ export default async function OrganisationsPage() {
                 {intro.content && (
                   <div
                     className="text-gray-600 leading-relaxed prose prose-gray"
-                    dangerouslySetInnerHTML={{ __html: intro.content }}
+                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(intro.content) }}
                   />
                 )}
               </div>
@@ -374,7 +375,7 @@ export default async function OrganisationsPage() {
             {cta.subtitle && (
               <div
                 className="text-indigo-100 text-lg leading-relaxed mb-10 max-w-xl mx-auto prose prose-invert prose-lg"
-                dangerouslySetInnerHTML={{ __html: cta.subtitle }}
+                dangerouslySetInnerHTML={{ __html: sanitizeText(cta.subtitle) }}
               />
             )}
             <div className="flex flex-wrap gap-4 justify-center">

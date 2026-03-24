@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/db";
 import Link from "next/link";
+import { sanitizeText, sanitizeHtml } from "@/lib/sanitize";
 
 export const metadata = {
   title: "Services | MindBridge",
@@ -296,7 +297,7 @@ export default async function ServicesPage() {
             {hero.subtitle && (
               <div
                 className="text-lg text-gray-600 max-w-2xl leading-relaxed mb-7 prose prose-gray prose-lg"
-                dangerouslySetInnerHTML={{ __html: hero.subtitle }}
+                dangerouslySetInnerHTML={{ __html: sanitizeText(hero.subtitle) }}
               />
             )}
             <div className="flex flex-wrap gap-3">
@@ -323,7 +324,7 @@ export default async function ServicesPage() {
               <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
             </svg>
             <blockquote className="text-xl md:text-2xl text-white font-light italic leading-relaxed">
-              <div dangerouslySetInnerHTML={{ __html: motto.quote }} />
+              <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(motto.quote) }} />
             </blockquote>
             {motto.attribution && (
               <p className="text-indigo-500 text-sm mt-5 font-medium tracking-wide">— {motto.attribution}</p>
@@ -356,7 +357,7 @@ export default async function ServicesPage() {
                   {service.isHtml ? (
                     <div
                       className="text-gray-500 text-sm leading-relaxed flex-1 mb-6 prose prose-sm prose-gray max-w-none"
-                      dangerouslySetInnerHTML={{ __html: service.description }}
+                      dangerouslySetInnerHTML={{ __html: sanitizeHtml(service.description) }}
                     />
                   ) : (
                     <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-6">{service.description}</p>
@@ -399,7 +400,7 @@ export default async function ServicesPage() {
                     <h3 className="text-base font-bold text-gray-900 mb-2">{item.title}</h3>
                     <div
                       className="text-gray-500 text-sm leading-relaxed prose prose-sm prose-gray max-w-none"
-                      dangerouslySetInnerHTML={{ __html: item.description }}
+                      dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.description) }}
                     />
                   </div>
                 ))}
@@ -531,7 +532,7 @@ export default async function ServicesPage() {
             {cta.subtitle && (
               <div
                 className="text-indigo-100 text-lg leading-relaxed mb-10 max-w-xl mx-auto prose prose-invert prose-lg"
-                dangerouslySetInnerHTML={{ __html: cta.subtitle }}
+                dangerouslySetInnerHTML={{ __html: sanitizeText(cta.subtitle) }}
               />
             )}
             <div className="flex flex-wrap gap-4 justify-center">
