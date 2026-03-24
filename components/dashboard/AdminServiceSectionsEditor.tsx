@@ -37,8 +37,7 @@ const SECTION_DEFS: SectionDef[] = [
   { key: "motto",         label: "Motto Strip",     icon: "💬", defaultSortOrder: 2 },
   { key: "how_it_works",  label: "How We Work",     icon: "🔢", defaultSortOrder: 3 },
   { key: "why_us",        label: "Why Choose Us",   icon: "⭐", defaultSortOrder: 4 },
-  { key: "for_companies", label: "For Companies",   icon: "🏢", defaultSortOrder: 5 },
-  { key: "cta",           label: "CTA Banner",      icon: "🎯", defaultSortOrder: 6 },
+  { key: "cta",           label: "CTA Banner",      icon: "🎯", defaultSortOrder: 5 },
 ];
 
 // ── Available icon names ──────────────────────────────────────────────────────
@@ -274,7 +273,6 @@ export default function AdminServiceSectionsEditor({ initialSections }: Props) {
       case "motto":         return <MottoEditor {...props} />;
       case "how_it_works":  return <HowItWorksEditor {...props} />;
       case "why_us":        return <WhyUsEditor {...props} />;
-      case "for_companies": return <ForCompaniesEditor {...props} />;
       case "cta":           return <CtaEditor {...props} />;
       default: return null;
     }
@@ -394,24 +392,6 @@ function getDefaultMeta(key: string): Record<string, unknown> {
           { iconName: "bolt",      title: "Flexible & Accessible",     description: "In-person and online sessions, daytime and evening availability — mental health support that fits your life." },
           { iconName: "chart",     title: "Measurable Progress",       description: "We track outcomes at every stage so you can see the difference and stay motivated on your journey." },
         ],
-      };
-    case "for_companies":
-      return {
-        items: [
-          { iconName: "chart",     title: "Workplace Psychological Assessment",  description: "Structured evaluations of individual and team wellbeing, identifying risk factors, burnout indicators, and opportunities for organisational growth." },
-          { iconName: "heart",     title: "Employee Psychotherapy",              description: "Confidential one-on-one therapy sessions for staff, available as part of an Employee Assistance Programme (EAP) or direct referral scheme." },
-          { iconName: "users",     title: "Resilience & Wellbeing Workshops",    description: "Interactive group sessions covering stress management, emotional regulation, communication skills, and burnout prevention." },
-          { iconName: "lightbulb", title: "Team Building with Specialists",      description: "Purposeful team experiences built around psychological safety, trust, and healthy communication." },
-          { iconName: "star",      title: "Leadership & Executive Coaching",     description: "Individual coaching for managers and senior leaders on emotional intelligence, decision-making under pressure, and sustainable high performance." },
-          { iconName: "lifebuoy",  title: "Crisis & Critical Incident Support",  description: "Rapid-response psychological support for teams following traumatic events, major organisational change, or acute workplace stress situations." },
-        ],
-        trustHighlights: [
-          { label: "Tailored programmes",       description: "No off-the-shelf packages — every engagement is scoped to your organisation's specific context and goals." },
-          { label: "Qualified clinical team",   description: "All facilitators and coaches are chartered psychologists or accredited therapists with workplace experience." },
-          { label: "Measurable outcomes",        description: "Pre and post assessments, anonymised reporting, and actionable recommendations delivered after every programme." },
-        ],
-        ctaText: "Request a Proposal",
-        ctaHref: "/contact",
       };
     case "cta":
       return {
@@ -622,96 +602,6 @@ function WhyUsEditor({ form, setForm }: EditorProps) {
         </div>
         {items.length < 6 && (
           <AddItemButton onClick={() => setItems([...items, { iconName: "star", title: "", description: "" }])} />
-        )}
-      </div>
-    </div>
-  );
-}
-
-// ── ForCompaniesEditor ────────────────────────────────────────────────────────
-
-type CorpItem = { iconName: string; title: string; description: string };
-type TrustHighlight = { label: string; description: string };
-
-function ForCompaniesEditor({ form, setForm }: EditorProps) {
-  const meta = form.meta as {
-    items?: CorpItem[];
-    trustHighlights?: TrustHighlight[];
-    ctaText?: string;
-    ctaHref?: string;
-  };
-  const items: CorpItem[] = meta.items ?? [];
-  const trustHighlights: TrustHighlight[] = meta.trustHighlights ?? [];
-  const ctaText = meta.ctaText ?? "";
-  const ctaHref = meta.ctaHref ?? "";
-
-  function updateMeta(patch: Partial<typeof meta>) {
-    setForm((f) => ({ ...f, meta: { ...f.meta, ...patch } }));
-  }
-
-  return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <FieldLabel>Section Title</FieldLabel>
-          <input className={inputClass} value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="Investing in Your People's Mental Health" />
-        </div>
-        <div>
-          <FieldLabel>Subtitle</FieldLabel>
-          <input className={inputClass} value={form.subtitle} onChange={(e) => setForm((f) => ({ ...f, subtitle: e.target.value }))} placeholder="Organisations that prioritise psychological wellbeing..." />
-        </div>
-        <div>
-          <FieldLabel>CTA Button Text</FieldLabel>
-          <input className={inputClass} value={ctaText} onChange={(e) => updateMeta({ ctaText: e.target.value })} placeholder="Request a Proposal" />
-        </div>
-        <div>
-          <FieldLabel>CTA Button Link</FieldLabel>
-          <input className={inputClass} value={ctaHref} onChange={(e) => updateMeta({ ctaHref: e.target.value })} placeholder="/contact" />
-        </div>
-      </div>
-
-      <div>
-        <FieldLabel>Service Cards (up to 6)</FieldLabel>
-        <div className="space-y-3 mb-3">
-          {items.map((item, idx) => (
-            <ArrayItemRow key={idx} onRemove={() => updateMeta({ items: items.filter((_, i) => i !== idx) })}>
-              <div className="grid grid-cols-3 gap-2">
-                <IconPicker value={item.iconName} onChange={(v) => { const n = [...items]; n[idx] = { ...n[idx], iconName: v }; updateMeta({ items: n }); }} />
-                <div className="col-span-2">
-                  <FieldLabel>Title</FieldLabel>
-                  <input className={inputClass} value={item.title} onChange={(e) => { const n = [...items]; n[idx] = { ...n[idx], title: e.target.value }; updateMeta({ items: n }); }} placeholder="Service title" />
-                </div>
-              </div>
-              <div>
-                <FieldLabel>Description</FieldLabel>
-                <textarea className={`${inputClass} resize-none`} rows={2} value={item.description} onChange={(e) => { const n = [...items]; n[idx] = { ...n[idx], description: e.target.value }; updateMeta({ items: n }); }} placeholder="Service description..." />
-              </div>
-            </ArrayItemRow>
-          ))}
-        </div>
-        {items.length < 6 && (
-          <AddItemButton onClick={() => updateMeta({ items: [...items, { iconName: "star", title: "", description: "" }] })} />
-        )}
-      </div>
-
-      <div>
-        <FieldLabel>Trust Highlights (up to 4)</FieldLabel>
-        <div className="space-y-3 mb-3">
-          {trustHighlights.map((h, idx) => (
-            <ArrayItemRow key={idx} onRemove={() => updateMeta({ trustHighlights: trustHighlights.filter((_, i) => i !== idx) })}>
-              <div>
-                <FieldLabel>Label</FieldLabel>
-                <input className={inputClass} value={h.label} onChange={(e) => { const n = [...trustHighlights]; n[idx] = { ...n[idx], label: e.target.value }; updateMeta({ trustHighlights: n }); }} placeholder="Tailored programmes" />
-              </div>
-              <div>
-                <FieldLabel>Description</FieldLabel>
-                <input className={inputClass} value={h.description} onChange={(e) => { const n = [...trustHighlights]; n[idx] = { ...n[idx], description: e.target.value }; updateMeta({ trustHighlights: n }); }} placeholder="Short description..." />
-              </div>
-            </ArrayItemRow>
-          ))}
-        </div>
-        {trustHighlights.length < 4 && (
-          <AddItemButton onClick={() => updateMeta({ trustHighlights: [...trustHighlights, { label: "", description: "" }] })} label="Add Highlight" />
         )}
       </div>
     </div>
