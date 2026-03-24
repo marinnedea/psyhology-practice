@@ -35,17 +35,7 @@ export function sanitizeHtml(input: string | null | undefined): string {
       "div", "span",
       "sup", "sub",
     ],
-    allowedAttributes: {
-      a: ["href", "target", "rel", "title"],
-      img: ["src", "alt", "width", "height", "loading"],
-      "*": ["class", "id", "style"],
-    },
-    // Only allow relative paths or https for href/src to block javascript: URIs
-    allowedSchemes: ["https", "http", "mailto"],
-    allowedSchemesByTag: {
-      img: ["https", "http", "/"],
-    },
-    // Disallow inline event handlers (onclick, onerror, etc.)
+    // Only keep safe attributes; no inline event handlers (onclick, onerror, etc.)
     allowedAttributes: {
       a: ["href", "target", "rel", "title"],
       img: ["src", "alt", "width", "height", "loading"],
@@ -54,7 +44,10 @@ export function sanitizeHtml(input: string | null | undefined): string {
       th: ["colspan", "rowspan"],
       "*": ["class"],
     },
-    // Sanitize style attributes if they slip through
-    allowedStyles: {},
+    // Block javascript: URIs
+    allowedSchemes: ["https", "http", "mailto"],
+    allowedSchemesByTag: {
+      img: ["https", "http", "/"],
+    },
   });
 }
