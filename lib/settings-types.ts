@@ -3,6 +3,19 @@ export type SiteSettings = {
   site_tagline: string;
   site_description: string;
   footer_credits: string;
+  // Logo (header)
+  logo_url: string;
+  logo_image_id: string;
+  logo_2x_url: string;
+  logo_2x_image_id: string;
+  // Favicon
+  favicon_url: string;
+  favicon_image_id: string;
+  favicon_2x_url: string;
+  favicon_2x_image_id: string;
+  // Apple touch icon (180×180, retina iOS)
+  apple_touch_icon_url: string;
+  apple_touch_icon_image_id: string;
   contact_email: string;
   contact_phone: string;
   social_facebook: string;
@@ -37,6 +50,16 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   site_description:
     "Connect with qualified psychologists. Book appointments, read expert blog posts, and take care of your mental health.",
   footer_credits: "Built by Psychology Practice",
+  logo_url: "",
+  logo_image_id: "",
+  logo_2x_url: "",
+  logo_2x_image_id: "",
+  favicon_url: "",
+  favicon_image_id: "",
+  favicon_2x_url: "",
+  favicon_2x_image_id: "",
+  apple_touch_icon_url: "",
+  apple_touch_icon_image_id: "",
   contact_email: "",
   contact_phone: "",
   social_facebook: "",

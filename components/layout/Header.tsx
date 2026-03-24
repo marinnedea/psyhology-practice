@@ -22,7 +22,7 @@ const NAV_LINKS: NavLink[] = [
 function HeaderContent() {
   const { data: session } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
-  const { site_name } = useSiteSettings();
+  const { site_name, logo_url, logo_2x_url } = useSiteSettings() as { site_name: string; logo_url: string; logo_2x_url: string };
   const pathname = usePathname();
 
   const dashboardPath = session?.user?.role
@@ -57,12 +57,23 @@ function HeaderContent() {
       <nav aria-label="Main navigation" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-              <circle cx="8" cy="22" r="5" fill="#2563eb" />
-              <circle cx="24" cy="22" r="5" fill="#2563eb" />
-              <path d="M3 22 Q16 4 29 22" stroke="#2563eb" strokeWidth="3" fill="none" strokeLinecap="round" />
-            </svg>
-            <span className="text-xl font-semibold text-gray-900 dark:text-white">{site_name}</span>
+            {logo_url ? (
+              <img
+                src={logo_url}
+                srcSet={logo_2x_url ? `${logo_url} 1x, ${logo_2x_url} 2x` : undefined}
+                alt={site_name}
+                className="h-8 w-auto object-contain"
+              />
+            ) : (
+              <>
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                  <circle cx="8" cy="22" r="5" fill="#2563eb" />
+                  <circle cx="24" cy="22" r="5" fill="#2563eb" />
+                  <path d="M3 22 Q16 4 29 22" stroke="#2563eb" strokeWidth="3" fill="none" strokeLinecap="round" />
+                </svg>
+                <span className="text-xl font-semibold text-gray-900 dark:text-white">{site_name}</span>
+              </>
+            )}
           </Link>
 
           {/* Desktop nav */}
