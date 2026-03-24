@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | MindBridge",
+  title: "Privacy Policy",
   description: "How MindBridge collects, uses, and protects your personal data.",
 };
 

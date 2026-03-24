@@ -3,7 +3,7 @@ import Link from "next/link";
 import BlogSidebar from "@/components/blog/BlogSidebar";
 
 export const metadata = {
-  title: "Blog | MindBridge",
+  title: "Blog",
   description: "Expert articles on mental health, therapy, and well-being from our team of psychologists.",
 };
 

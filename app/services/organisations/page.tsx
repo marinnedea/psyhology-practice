@@ -3,7 +3,7 @@ import Link from "next/link";
 import { sanitizeText, sanitizeHtml } from "@/lib/sanitize";
 
 export const metadata = {
-  title: "Services for Organisations | MindBridge",
+  title: "Services for Organisations",
   description:
     "Psychological services tailored for organisations — workplace assessments, employee wellbeing programmes, leadership coaching, and crisis support.",
 };

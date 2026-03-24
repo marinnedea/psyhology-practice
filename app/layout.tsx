@@ -16,8 +16,9 @@ const geist = Geist({
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
+  const siteName = settings.site_name || "MindBridge";
   return {
-    title: settings.site_name,
+    title: { template: `%s | ${siteName}`, default: siteName },
     description: settings.site_description,
   };
 }
