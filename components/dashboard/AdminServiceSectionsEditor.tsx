@@ -373,7 +373,7 @@ function getDefaultMeta(key: string): Record<string, unknown> {
     case "motto":
       return {
         quote: "The greatest wealth is health — and the first step toward change is the courage to seek help.",
-        attribution: "MindBridge Philosophy",
+        attribution: "Psychology Practice Philosophy",
       };
     case "how_it_works":
       return {
@@ -507,7 +507,7 @@ function MottoEditor({ form, setForm, tinymceKey }: EditorProps) {
       </div>
       <div>
         <FieldLabel>Attribution</FieldLabel>
-        <input className={inputClass} value={attribution} onChange={(e) => updateMeta({ attribution: e.target.value })} placeholder="MindBridge Philosophy" />
+        <input className={inputClass} value={attribution} onChange={(e) => updateMeta({ attribution: e.target.value })} placeholder="Psychology Practice Philosophy" />
       </div>
     </div>
   );

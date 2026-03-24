@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────
-# MindBridge — Docker Install Script
+# Psychology Practice — Docker Install Script
 #
 # One-liner usage:
 #   bash <(curl -fsSL https://raw.githubusercontent.com/marinnedea/psyhology-practice/main/scripts/docker-install.sh)
@@ -158,7 +158,7 @@ APP_URL_DISPLAY="${APP_URL:-http://localhost:3000}"
 
 echo ""
 echo -e "${GREEN}${BOLD}════════════════════════════════════════════${RESET}"
-echo -e "${GREEN}${BOLD}  ✔  MindBridge is running!                 ${RESET}"
+echo -e "${GREEN}${BOLD}  ✔  App is running!                        ${RESET}"
 echo -e "${GREEN}${BOLD}════════════════════════════════════════════${RESET}"
 echo ""
 echo -e "  App: ${BOLD}http://localhost:3000${RESET}"

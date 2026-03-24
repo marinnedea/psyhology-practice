@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   });
   if (!post) return { title: "Not Found" };
   return {
-    title: `${post.title} | MindBridge Blog`,
+    title: post.title,
     description: post.excerpt ?? post.title,
   };
 }

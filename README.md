@@ -1,8 +1,8 @@
-# MindBridge — Psychology Practice Platform
+# Psychology Practice Platform
 
 A full-featured, self-hosted psychology practice management platform built with Next.js 16, PostgreSQL, and Prisma. Supports public-facing pages with a CMS, client/psychologist/admin dashboards, appointment booking, a blog, support ticketing, newsletter management, and more.
 
-![MindBridge](MindBridge.png)
+![Psychology Practice](psychology-practice.png)
 
 ---
 

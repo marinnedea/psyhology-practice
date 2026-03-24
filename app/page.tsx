@@ -168,7 +168,7 @@ export default async function HomePage() {
   // ── Why Choose Us ─────────────────────────────────────────────────────────
   const whySection = getSection("why_choose_us");
   const whyMeta = getMeta<WhyChooseMeta>(whySection?.metadata, defaultWhyChooseMeta);
-  const whyTitle = whySection?.title ?? "Why Choose MindBridge";
+  const whyTitle = whySection?.title ?? "Why Choose Us";
   const whySubtitle = whySection?.subtitle ?? "We combine clinical excellence with genuine care. Here's what makes our platform different.";
   const whyItems = whyMeta.items?.length ? whyMeta.items : defaultWhyChooseMeta.items!;
 
@@ -326,7 +326,7 @@ export default async function HomePage() {
         <section className="py-20 px-4 bg-white">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <span className="inline-block text-xs font-semibold text-indigo-600 uppercase tracking-widest mb-3">Why MindBridge</span>
+              <span className="inline-block text-xs font-semibold text-indigo-600 uppercase tracking-widest mb-3">Why Choose Us</span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{whyTitle}</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">{whySubtitle}</p>
             </div>

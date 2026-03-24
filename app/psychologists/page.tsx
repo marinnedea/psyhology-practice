@@ -3,7 +3,7 @@ import Link from "next/link";
 import SpecialtySidebar from "@/components/psychologists/SpecialtySidebar";
 
 export const metadata = {
-  title: "Find a Psychologist | MindBridge",
+  title: "Find a Psychologist",
   description: "Browse our network of qualified, approved psychologists and book a session today.",
 };
 

@@ -3,20 +3,20 @@ import Link from "next/link";
 import { sanitizeText, sanitizeHtml } from "@/lib/sanitize";
 
 export const metadata = {
-  title: "About Us | MindBridge",
-  description: "Learn about our mission, values, and the team of qualified psychologists behind MindBridge.",
+  title: "About Us",
+  description: "Learn about our mission, values, and the team of qualified psychologists behind Psychology Practice.",
 };
 
 // ── Default content (used when DB has no rows) ────────────────────────────────
 
 const DEFAULT_HERO = {
-  title: "About MindBridge",
+  title: "About Psychology Practice",
   subtitle: "We connect people with qualified, compassionate psychologists — making quality mental health care accessible to everyone.",
 };
 
 const DEFAULT_STORY = {
-  title: "How MindBridge Began",
-  content: "MindBridge was born from a simple but powerful belief: that everyone deserves access to quality mental health care, without barriers, without stigma, and without complexity. We started as a small team of psychologists and technologists who noticed that too many people were struggling to find the right support. Today, we're proud to connect thousands of people with qualified professionals who genuinely care.",
+  title: "How Psychology Practice Began",
+  content: "Psychology Practice was born from a simple but powerful belief: that everyone deserves access to quality mental health care, without barriers, without stigma, and without complexity. We started as a small team of psychologists and technologists who noticed that too many people were struggling to find the right support. Today, we're proud to connect thousands of people with qualified professionals who genuinely care.",
 };
 
 const DEFAULT_MISSION = {

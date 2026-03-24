@@ -1,5 +1,5 @@
 -- ─────────────────────────────────────────────────────────────
--- MindBridge — PostgreSQL initial setup
+-- Psychology Practice — PostgreSQL initial setup
 --
 -- Run as the PostgreSQL superuser before applying migrations:
 --   sudo -u postgres psql -f database/setup.sql

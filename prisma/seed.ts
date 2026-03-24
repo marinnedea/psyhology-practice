@@ -131,7 +131,7 @@ async function main() {
     },
     {
       page: "homepage", sectionKey: "why_choose_us", sortOrder: 3, isVisible: true,
-      title: "Why Choose MindBridge",
+      title: "Why Choose Psychology Practice",
       subtitle: "What sets our practice apart from the rest",
       metadata: {
         items: [
@@ -217,15 +217,15 @@ async function main() {
   const aboutSections = [
     {
       page: "about", sectionKey: "hero", sortOrder: 0, isVisible: true,
-      title: "About MindBridge",
+      title: "About Psychology Practice",
       subtitle: null,
       content: "We believe that mental health care should be accessible, compassionate, and professional. Our platform connects people with qualified psychologists who genuinely care.",
     },
     {
       page: "about", sectionKey: "our_story", sortOrder: 10, isVisible: true,
       title: "Our Story",
-      subtitle: "How MindBridge began",
-      content: "MindBridge was founded in 2018 by a team of psychologists and technologists who saw first-hand how difficult it was for people to find the right mental health support. Long waiting lists, geographic barriers, and the stigma around seeking help were leaving too many people without care. We set out to change that — by building a platform that makes finding a qualified psychologist as straightforward as possible, while maintaining the human warmth that therapy requires.",
+      subtitle: "How Psychology Practice began",
+      content: "Psychology Practice was founded in 2018 by a team of psychologists and technologists who saw first-hand how difficult it was for people to find the right mental health support. Long waiting lists, geographic barriers, and the stigma around seeking help were leaving too many people without care. We set out to change that — by building a platform that makes finding a qualified psychologist as straightforward as possible, while maintaining the human warmth that therapy requires.",
       imageId: imgAboutStory,
     },
     {

@@ -187,10 +187,10 @@ function BrandingTab({ values, setValues }: { values: SiteSettings; setValues: (
   return (
     <div className="space-y-5 max-w-2xl">
       <Card title="Site Identity">
-        <Field label="Site Name"        value={values.site_name}        onChange={set("site_name")}        placeholder="MindBridge" />
+        <Field label="Site Name"        value={values.site_name}        onChange={set("site_name")}        placeholder="Psychology Practice" />
         <Field label="Tagline"          value={values.site_tagline}     onChange={set("site_tagline")}     placeholder="Connecting minds, building bridges…" />
         <Field label="Meta Description" value={values.site_description} onChange={set("site_description")} placeholder="Used in search engine results" />
-        <Field label="Footer Credits"   value={values.footer_credits}   onChange={set("footer_credits")}   placeholder="© 2025 MindBridge" />
+        <Field label="Footer Credits"   value={values.footer_credits}   onChange={set("footer_credits")}   placeholder="© 2025 Psychology Practice" />
       </Card>
       <Card title="Contact Details">
         <Field label="Contact Email" type="email" value={values.contact_email} onChange={set("contact_email")} placeholder="contact@example.com" />
@@ -284,7 +284,7 @@ function LegalTab({ values, setValues }: { values: SiteSettings; setValues: (v: 
       <Card title="Legal Entity Details">
         <div>
           <Label>Organisation Name</Label>
-          <input type="text" value={values.privacy_org_name} onChange={(e) => setValues({ ...values, privacy_org_name: e.target.value })} placeholder="MindBridge Ltd." className={inputCls} />
+          <input type="text" value={values.privacy_org_name} onChange={(e) => setValues({ ...values, privacy_org_name: e.target.value })} placeholder="Psychology Practice Ltd." className={inputCls} />
         </div>
         <div>
           <Label>Registered Address</Label>
@@ -579,7 +579,7 @@ function EmailTab({
               </div>
               <div>
                 <Label>From Name</Label>
-                <input type="text" value={values.smtp_from_name} onChange={(e) => set("smtp_from_name")(e.target.value)} placeholder="MindBridge Support" className={inputCls} />
+                <input type="text" value={values.smtp_from_name} onChange={(e) => set("smtp_from_name")(e.target.value)} placeholder="Psychology Practice Support" className={inputCls} />
               </div>
               <div>
                 <Label>From Email</Label>

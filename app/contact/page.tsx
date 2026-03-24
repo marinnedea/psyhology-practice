@@ -2,7 +2,7 @@ import { getSettings } from "@/lib/settings";
 import ContactPageClient from "@/components/contact/ContactPageClient";
 
 export const metadata = {
-  title: "Contact Us | MindBridge",
+  title: "Contact Us",
   description: "Get in touch with our team — individual enquiries or organisation wellbeing programmes.",
 };
 

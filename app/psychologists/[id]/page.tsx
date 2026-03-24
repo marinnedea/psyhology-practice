@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   });
   if (!profile) return { title: "Not Found" };
   return {
-    title: `${profile.user.name} | MindBridge`,
+    title: profile.user.name,
     description: profile.bio?.slice(0, 155) ?? `Book a session with ${profile.user.name}.`,
   };
 }

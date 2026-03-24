@@ -4,8 +4,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | MindBridge",
-  description: "How MindBridge uses cookies and similar tracking technologies.",
+  title: "Cookie Policy",
+  description: "How Psychology Practice uses cookies and similar tracking technologies.",
 };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
