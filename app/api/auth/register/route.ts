@@ -2,8 +2,12 @@ import { NextResponse } from "next/server";
 import { hash } from "bcryptjs";
 import { prisma } from "@/lib/db";
 import { registerSchema } from "@/lib/validations";
+import { registerLimiter, getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
+  const rl = registerLimiter.check(getClientIp(req));
+  if (!rl.success) return rateLimitResponse(rl.resetAt);
+
   try {
     const body = await req.json();
     const parsed = registerSchema.safeParse(body);

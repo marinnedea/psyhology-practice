@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
+import { contactLimiter, getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 
 const schema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -10,6 +11,9 @@ const schema = z.object({
 });
 
 export async function POST(req: Request) {
+  const rl = contactLimiter.check(getClientIp(req));
+  if (!rl.success) return rateLimitResponse(rl.resetAt);
+
   try {
     const body = await req.json();
     const parsed = schema.safeParse(body);
