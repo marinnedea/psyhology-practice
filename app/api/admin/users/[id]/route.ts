@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { randomBytes } from "crypto";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import bcrypt from "bcryptjs";
@@ -103,7 +104,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
   }
 
   if (action === "reset_password") {
-    const tempPassword = "TempPass123#";
+    const tempPassword = randomBytes(10).toString("hex"); // 20-char random hex
     const passwordHash = await bcrypt.hash(tempPassword, 12);
     await prisma.user.update({
       where: { id },
