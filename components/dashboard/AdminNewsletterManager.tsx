@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type Subscriber = {
   id: string;
@@ -13,6 +14,9 @@ type Subscriber = {
 
 type Props = {
   initialSubscribers: Subscriber[];
+  page: number;
+  pageSize: number;
+  total: number;
 };
 
 function formatDate(iso: string): string {
@@ -23,7 +27,8 @@ function formatDate(iso: string): string {
   }).format(new Date(iso));
 }
 
-export default function AdminNewsletterManager({ initialSubscribers }: Props) {
+export default function AdminNewsletterManager({ initialSubscribers, page, pageSize, total }: Props) {
+  const totalPages = Math.ceil(total / pageSize);
   const router = useRouter();
   const [subscribers, setSubscribers] = useState<Subscriber[]>(initialSubscribers);
   const [loading, setLoading] = useState<string | null>(null);
@@ -196,6 +201,23 @@ export default function AdminNewsletterManager({ initialSubscribers }: Props) {
           </div>
         )}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between text-sm text-gray-500 pt-2">
+          <span>
+            Page {page + 1} of {totalPages} ({total} total)
+          </span>
+          <div className="flex items-center gap-1">
+            {page > 0 && (
+              <Link href={`/admin/newsletter?page=${page - 1}`} className="px-3 py-1.5 rounded border border-gray-200 bg-white hover:bg-gray-50 text-xs font-medium">← Prev</Link>
+            )}
+            {page + 1 < totalPages && (
+              <Link href={`/admin/newsletter?page=${page + 1}`} className="px-3 py-1.5 rounded border border-gray-200 bg-white hover:bg-gray-50 text-xs font-medium">Next →</Link>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

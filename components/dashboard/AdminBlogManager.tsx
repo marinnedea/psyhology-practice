@@ -18,6 +18,9 @@ type Post = {
 type Props = {
   posts: Post[];
   currentStatus: string;
+  page: number;
+  pageSize: number;
+  total: number;
 };
 
 const STATUS_TABS = [
@@ -57,7 +60,8 @@ function formatDate(date: Date): string {
   }).format(new Date(date));
 }
 
-export default function AdminBlogManager({ posts, currentStatus }: Props) {
+export default function AdminBlogManager({ posts, currentStatus, page, pageSize, total }: Props) {
+  const totalPages = Math.ceil(total / pageSize);
   const router = useRouter();
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -153,6 +157,26 @@ export default function AdminBlogManager({ posts, currentStatus }: Props) {
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
           {error}
+        </div>
+      )}
+
+      {/* Pagination info */}
+      {total > 0 && (
+        <div className="flex items-center justify-between text-sm text-gray-500">
+          <span>
+            Showing {page * pageSize + 1}–{Math.min((page + 1) * pageSize, total)} of {total} posts
+          </span>
+          {totalPages > 1 && (
+            <div className="flex items-center gap-1">
+              {page > 0 && (
+                <Link href={`/admin/blog?status=${currentStatus}&page=${page - 1}`} className="px-3 py-1.5 rounded border border-gray-200 bg-white hover:bg-gray-50 text-xs font-medium">← Prev</Link>
+              )}
+              <span className="px-3 py-1.5 text-xs">Page {page + 1} / {totalPages}</span>
+              {page + 1 < totalPages && (
+                <Link href={`/admin/blog?status=${currentStatus}&page=${page + 1}`} className="px-3 py-1.5 rounded border border-gray-200 bg-white hover:bg-gray-50 text-xs font-medium">Next →</Link>
+              )}
+            </div>
+          )}
         </div>
       )}
 

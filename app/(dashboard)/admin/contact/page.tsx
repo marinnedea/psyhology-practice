@@ -3,11 +3,23 @@ import { prisma } from "@/lib/db";
 import { getSettings } from "@/lib/settings";
 import AdminContactMessages from "@/components/dashboard/AdminContactMessages";
 
-export default async function AdminContactPage() {
+const PAGE_SIZE = 20;
+
+type SearchParams = Promise<{ page?: string }>;
+
+export default async function AdminContactPage({ searchParams }: { searchParams: SearchParams }) {
   await requireRole("ADMIN");
 
-  const [messages, settings] = await Promise.all([
-    prisma.contactMessage.findMany({ orderBy: { createdAt: "desc" } }),
+  const { page: pageParam } = await searchParams;
+  const page = Math.max(0, parseInt(pageParam ?? "0", 10) || 0);
+
+  const [messages, total, settings] = await Promise.all([
+    prisma.contactMessage.findMany({
+      orderBy: { createdAt: "desc" },
+      take: PAGE_SIZE,
+      skip: page * PAGE_SIZE,
+    }),
+    prisma.contactMessage.count(),
     getSettings(),
   ]);
 
@@ -23,7 +35,7 @@ export default async function AdminContactPage() {
     createdAt: m.createdAt.toISOString(),
   }));
 
-  const unreadCount = serialized.filter((m) => !m.isRead).length;
+  const unreadCount = await prisma.contactMessage.count({ where: { isRead: false } });
   const smtpEnabled = settings.smtp_enabled === "1";
 
   return (
@@ -36,7 +48,13 @@ export default async function AdminContactPage() {
             : "All messages have been read."}
         </p>
       </div>
-      <AdminContactMessages initialMessages={serialized} smtpEnabled={smtpEnabled} />
+      <AdminContactMessages
+        initialMessages={serialized}
+        smtpEnabled={smtpEnabled}
+        page={page}
+        pageSize={PAGE_SIZE}
+        total={total}
+      />
     </div>
   );
 }

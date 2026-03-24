@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type Message = {
   id: string;
@@ -18,6 +19,9 @@ type Message = {
 type Props = {
   initialMessages: Message[];
   smtpEnabled: boolean;
+  page: number;
+  pageSize: number;
+  total: number;
 };
 
 function formatDate(iso: string): string {
@@ -102,8 +106,9 @@ function ReplyForm({
   );
 }
 
-export default function AdminContactMessages({ initialMessages, smtpEnabled }: Props) {
+export default function AdminContactMessages({ initialMessages, smtpEnabled, page, pageSize, total }: Props) {
   const router = useRouter();
+  const totalPages = Math.ceil(total / pageSize);
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [replyingId, setReplyingId] = useState<string | null>(null);
@@ -368,6 +373,23 @@ export default function AdminContactMessages({ initialMessages, smtpEnabled }: P
           </div>
         )}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between text-sm text-gray-500 pt-2">
+          <span>
+            Page {page + 1} of {totalPages} ({total} total)
+          </span>
+          <div className="flex items-center gap-1">
+            {page > 0 && (
+              <Link href={`/admin/contact?page=${page - 1}`} className="px-3 py-1.5 rounded border border-gray-200 bg-white hover:bg-gray-50 text-xs font-medium">← Prev</Link>
+            )}
+            {page + 1 < totalPages && (
+              <Link href={`/admin/contact?page=${page + 1}`} className="px-3 py-1.5 rounded border border-gray-200 bg-white hover:bg-gray-50 text-xs font-medium">Next →</Link>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
