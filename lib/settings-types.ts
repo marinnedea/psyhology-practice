@@ -32,11 +32,11 @@ export type SiteSettings = {
 };
 
 export const DEFAULT_SETTINGS: SiteSettings = {
-  site_name: "MindBridge",
+  site_name: "Psychology Practice",
   site_tagline: "Connecting minds, building bridges to better mental health",
   site_description:
     "Connect with qualified psychologists. Book appointments, read expert blog posts, and take care of your mental health.",
-  footer_credits: "Built by MindBridge",
+  footer_credits: "Built by Psychology Practice",
   contact_email: "",
   contact_phone: "",
   social_facebook: "",

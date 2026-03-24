@@ -108,7 +108,7 @@ const DEFAULT_HERO = {
 
 const DEFAULT_MOTTO = {
   quote: "The greatest wealth is health — and the first step toward change is the courage to seek help.",
-  attribution: "MindBridge Philosophy",
+  attribution: "Psychology Practice Philosophy",
 };
 
 const DEFAULT_HOW_IT_WORKS = {
@@ -289,7 +289,7 @@ export default async function ServicesPage() {
         <section className="bg-gradient-to-br from-slate-50 to-indigo-50 py-16 px-4 border-b border-gray-200">
           <div className="max-w-4xl mx-auto">
             <span className="inline-block text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-3">
-              MindBridge Psychology
+              Psychology Practice
             </span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
               {hero.title}
@@ -415,7 +415,7 @@ export default async function ServicesPage() {
         <section className="py-24 px-4 bg-white">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
-              <p className="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-3">Why MindBridge</p>
+              <p className="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-3">Why Choose Us</p>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{why.title}</h2>
               {why.subtitle && (
                 <p className="text-gray-500 max-w-xl mx-auto leading-relaxed">{why.subtitle}</p>

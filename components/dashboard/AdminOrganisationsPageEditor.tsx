@@ -556,7 +556,7 @@ function WhyPartnerEditor({ form, setForm }: EditorProps) {
       <div className="grid grid-cols-2 gap-3">
         <div>
           <FieldLabel>Section Title</FieldLabel>
-          <input className={inputClass} value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="Why Partner with MindBridge?" />
+          <input className={inputClass} value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="Why Partner with Us?" />
         </div>
         <div>
           <FieldLabel>Subtitle</FieldLabel>

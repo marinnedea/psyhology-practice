@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Terms and conditions governing use of the MindBridge platform.",
+  description: "Terms and conditions governing use of the Psychology Practice platform.",
 };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {

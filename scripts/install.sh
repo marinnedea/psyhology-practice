@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────
-# MindBridge — Bare-metal Ubuntu Install Script
+# Psychology Practice — Bare-metal Ubuntu Install Script
 #
 # Tested on Ubuntu 24.x / 25.x.
 # Run from the project root directory:
@@ -156,7 +156,7 @@ success "Application started with PM2 (name: psych-app)."
 # ── Done ──────────────────────────────────────────────────────
 echo ""
 echo -e "${GREEN}${BOLD}════════════════════════════════════════════${RESET}"
-echo -e "${GREEN}${BOLD}  ✔  MindBridge installed successfully!     ${RESET}"
+echo -e "${GREEN}${BOLD}  ✔  App installed successfully!            ${RESET}"
 echo -e "${GREEN}${BOLD}════════════════════════════════════════════${RESET}"
 echo ""
 echo -e "  App running on port ${BOLD}3000${RESET}."

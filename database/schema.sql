@@ -1,5 +1,5 @@
 -- ─────────────────────────────────────────────────────────────
--- MindBridge — Full Database Schema
+-- Psychology Practice — Full Database Schema
 -- Generated from prisma/schema.prisma + all applied migrations.
 --
 -- This file is for REFERENCE / DBA use only.

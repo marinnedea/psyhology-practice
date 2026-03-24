@@ -367,7 +367,7 @@ function HeroEditor({ form, setForm, tinymceKey }: EditorProps) {
     <div className="space-y-4">
       <div>
         <FieldLabel>Headline</FieldLabel>
-        <input className={inputClass} value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="About MindBridge" />
+        <input className={inputClass} value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="About Us" />
       </div>
       <div>
         <FieldLabel>Subtitle</FieldLabel>
@@ -389,7 +389,7 @@ function StoryEditor({ form, setForm, tinymceKey }: EditorProps) {
     <div className="space-y-4">
       <div>
         <FieldLabel>Section Title</FieldLabel>
-        <input className={inputClass} value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="How MindBridge Began" />
+        <input className={inputClass} value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="How We Began" />
       </div>
       <div>
         <FieldLabel>Body Text</FieldLabel>

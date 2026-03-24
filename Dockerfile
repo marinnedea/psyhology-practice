@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────────────────────
-# MindBridge — Multi-stage Dockerfile
+# Psychology Practice — Multi-stage Dockerfile
 #
 # Stage 1: deps      — install production dependencies
 # Stage 2: builder   — full build (generates Prisma client + Next.js standalone)

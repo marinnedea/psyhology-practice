@@ -52,7 +52,7 @@ export async function sendEmail(payload: EmailPayload): Promise<{ ok: boolean; e
       return { ok: false, error: "Could not create transporter" };
     }
 
-    const fromName = settings.smtp_from_name || settings.site_name || "MindBridge";
+    const fromName = settings.smtp_from_name || settings.site_name || "Psychology Practice";
     const fromEmail = settings.smtp_from_email || settings.contact_email;
 
     await transporter.sendMail({

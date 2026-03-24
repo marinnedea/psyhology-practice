@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How MindBridge collects, uses, and protects your personal data.",
+  description: "How Psychology Practice collects, uses, and protects your personal data.",
 };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {

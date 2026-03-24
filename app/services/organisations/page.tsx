@@ -126,7 +126,7 @@ const DEFAULT_SERVICES_LIST = {
 };
 
 const DEFAULT_WHY_PARTNER = {
-  title: "Why Partner with MindBridge?",
+  title: "Why Partner with Us?",
   subtitle: "We are not a box-ticking exercise. We are a clinical team committed to meaningful change in your organisation.",
   items: [
     { iconName: "shield",    title: "Qualified & Vetted Clinicians",      description: "All our psychologists hold recognised professional qualifications and undergo rigorous vetting — no coaches pretending to be therapists." },
@@ -331,7 +331,7 @@ export default async function OrganisationsPage() {
         <section className="py-24 px-4 bg-white">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
-              <p className="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-3">Why MindBridge</p>
+              <p className="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-3">Why Choose Us</p>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{whyPartner.title}</h2>
               {whyPartner.subtitle && (
                 <p className="text-gray-500 max-w-xl mx-auto leading-relaxed">{whyPartner.subtitle}</p>
